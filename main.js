@@ -1,6 +1,6 @@
 // Link do repositório para o link de informações
 const repoUrl = 'https://github.com/projeto-de-algoritmos/PD_FreelaCalculator';
-
+let horasDisponiveis = 0;
 
 // Todas as tasks cadastradas
 const tasks = new TaskList();
@@ -28,94 +28,100 @@ function getInfoProjeto() {
   return false;
 }
 
+function limpaForm(){
+  document.getElementById('nome').value ='';
+  document.getElementById('duracao').value = '';
+  document.getElementById('preco').value = '';
+}
+
 function addTask() {
   const formValue = getFormValue();
   if (validaForm(formValue)) {
     tasks.add(formValue);
+    horasDisponiveis = formValue['horasDisponiveis']
     renderTasks(steps[1]);
+    limpaForm();
   }
   return false;
 }
 
-function findSolution(memoization, horasDisponiveis){
-
+function findSolution(memoization) {
   resultado = [];
 
   let linha = tasks.length;
-  let coluna = horasDisponiveis;
-  let totalValue = memoization[linha][coluna];
+  let coluna = Number(horasDisponiveis);
+  const totalValue = memoization[linha][coluna];
   let totalObjects = 0;
 
   // @TODO: verificar caso no qual nenhum objeto cabe na mochila
   // Enquanto não chegar em uma coluna ou coluna que o valor é zero
   // continua buscando de onde veio o valor da celula
-  while(linha != 0 || coluna != 0){
-
-    // verifico se veio de não pegar o objeto na posição 
+  while (linha != 0 || coluna != 0) {
+    // verifico se veio de não pegar o objeto na posição
     // memoization[linha][coluna], pois está igual ao da linha de cima
     // se não peguei o objeto vou para linha de cima, caso contrario
     // peguei o objeto e vou para linha de cima menos o peso do objeto
-    if(totalValue == memoization[linha-1][coluna]){
+    if (totalValue == memoization[linha-1][coluna]) {
       linha = linha-1;
-    }else{
+    } else {
       resultado[totalObjects] = tasks[linha];
       totalObjects = totalObjects + 1;
       linha = linha - 1;
       coluna = coluna - tasks[linha].duracao;
     }
-  
   }
 
   return resultado;
-
 }
 
-function knapsack(horasDisponiveis){
-
-  // Crio a matriz
-  let memoization = [];
-    for(let linha = 0; linha < horasDisponiveis+1; linha ++){
-      memoization[linha] = [];
-      for(let coluna = 0; coluna < tasks.length+1; coluna++){
-        memoization[linha][coluna] = '';
-      }
-    }
+function knapsack() {
+  const qtdHoras = Number(horasDisponiveis);
+  const qtdTarefas = tasks.length
   
+  // Crio a matriz
+  const memoization = [];
+  
+  for (let i = 0 ; i <= qtdTarefas; i++){
+    memoization[i]= []
+    for (let j = 0; j <= qtdHoras; j++){
+      memoization[i][j]= -1
+    }
+  }
+
   // inicializo a primeira linha com 0's
-  for(let linha = 0; linha < horasDisponiveis+1; linha++){
-    memoization[linha][0] = 0;
+  for (let col = 0; col <= qtdHoras; col++) {
+    memoization[0][col] = 0;
   }
 
   // inicializo a primeira coluna com 0's
-  for(let coluna = 0; coluna < tasks.length+1; coluna++){
-    memoization[0][coluna] = 0;
+  for (let lin = 0; lin <= tasks.length; lin++) {
+    memoization[lin][0] = 0;
   }
 
   // percorro toda a matriz
-  for(let linha = 1; linha <horasDisponiveis+1; linha++){
-    for(let coluna = 1; coluna < tasks.length+1;coluna++){
-      
+  for (let j = 1; j <= qtdHoras; j++) {
+    for (let i = 1; i <= qtdTarefas; i++) {
       // assim evitanto um acesso a uma região não alocada de memória
-      // se o meu item não cabe na mochila descido não levar
-      if(tasks[linha-1].duracao > coluna){
-        memoization[linha][coluna] = memoization[linha-1][coluna];
-      }else{
-
+      // se o meu item não cabe na mochila decido não levar
+      
+      if (tasks[i-1].duracao > i) {
+        memoization[j][i] = memoization[j-1][i];
+      } else {
         // se o meu item cabe na mochila vejo o que é melhor
-        // a celula de cima da mochila com os itens presentes nela com aquele mesmo peso ou 
+        // a celula de cima da mochila com os itens presentes nela com aquele mesmo peso ou
         // a celula de cima da mochila com os itens presentes nela quando ela tinha peso
         // suficiente para levar o item mais o valor do novo item
-        let valorComNovoItem = tasks[linha-1].preco + memoization[linha-1][coluna-tasks[linha-1].duracao];
-        if(memoization[linha-1][coluna] > valorComNovoItem ){
-          memoization[linha][coluna] = memoization[linha-1][coluna];
-        }else{
-          memoization[linha][coluna] = valorComNovoItem;
+        const valorComNovoItem = tasks[i-1].preco + memoization[j-1][i-tasks[i-1].duracao];
+        if (memoization[j-1][i] > valorComNovoItem ) {
+          memoization[j][i] = memoization[j-1][i];
+        } else {
+          memoization[j][i] = valorComNovoItem;
         }
       }
     }
   }
-
-  let resultado = findSolution(memoization, horasDisponiveis);
+  console.log(memoization)
+  const resultado = findSolution(memoization, horasDisponiveis);
 
   return resultado;
 }
@@ -123,12 +129,13 @@ function knapsack(horasDisponiveis){
 
 // Organiza as tarefas que devem ser feitas
 function scheduleTasks() {
+  
   if (tasks.length == 0) {
     return false;
   }
 
   // @TODO: corrigir passagem de parâmetro e remover console.log depois dos testes
-  let tarefas = knapsack(11);
+  const tarefas = knapsack();
   console.log(tarefas);
 
   // Mostrar tarefas selecionadas
