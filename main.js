@@ -25,7 +25,9 @@ function getFormValue() {
 
 function getInfoProjeto() {
   // @TODO: inserir descrição do projeto
-  alert('Esse projeto visa organizar os trabalhos de freelancers maximizando o valor recebido.');
+  alert('Esse projeto visa organizar os trabalhos de freelancers maximizando o valor recebido,  \
+  usando o algoritmo da mochila (knapsack) com pesos, onde cada peso é a quantidade de horas para \
+   realizar uma tarefa.');
   return false;
 }
 
