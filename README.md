@@ -1,7 +1,7 @@
 # Freela Calculator
 
 **Número da Lista**: Dupla 06 (T01)<br>
-**Conteúdo da Disciplina**: Greed<br>
+**Conteúdo da Disciplina**: Programação Dinâmica<br>
 
 ## Alunos
 
@@ -16,7 +16,17 @@ Esse projeto consiste em um seletor de trabalhos freelance a partir de seus peso
 
 ## Screenshots
 
-Adicione 3 ou mais screenshots do projeto em funcionamento.
+### Tela Inicial
+
+![](./assets/1202.png)
+
+### Listagem das Tarefas Inseridas
+
+![](./assets/1253.png)
+
+### Após Seleção das Tarefas
+
+![](./assets/1100.png)
 
 ## Instalação
 
@@ -34,8 +44,8 @@ npm start
 
 ## Uso
 
-Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
+Para usar o projeto, acesse a página ([local](http://localhost:8080) ou no [github](https://projeto-de-algoritmos.github.io/PD_FreelaCalculator/)), adicione as tarefas com suas durações e valores, e a quantidade de horas disponível. Em seguida, clique em agendar e verifique quais tarefas deve fazer para receber o maior valor possível.
 
-## Outros
+## Apresentação
 
-Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
+[Arquivo de apresentação](./assets/gravacao.mp4)
