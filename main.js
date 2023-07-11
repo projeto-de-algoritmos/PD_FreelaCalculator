@@ -4,6 +4,7 @@ let horasDisponiveis = 0;
 
 // Todas as tasks cadastradas
 const tasks = new TaskList();
+const tarefasSelecionadas = new TaskList();
 
 // Id dos elementos [Atualizar sempre que alterar no HTML]
 const elementsId = {
@@ -62,7 +63,6 @@ function scheduleTasks() {
   // Mostrar tarefas selecionadas
   renderTasks(steps[2]);
 
-  document.getElementById('btn-salvar').disabled = false;
 }
 
 
@@ -89,6 +89,7 @@ function deleteTask(id) {
 
 
 function renderTasks(step) {
+  
   if (tasks.length <= 0) {
     return false;
   }
@@ -104,9 +105,18 @@ function renderTasks(step) {
     document.getElementById(tableIds['lista'].id).innerHTML = tasks.toTable(tableIds['lista'].headers, true);
   }
   if (step == steps[2]) {
+    
     document.getElementById(tableIds['lista'].id).innerHTML = tasks.toTable(tableIds['lista'].headers);
-    document.getElementById(tableIds['selecionadas'].id).innerHTML = tasks.toTable(tableIds['selecionadas'].headers);
-    document.getElementById('btn-salvar').disabled = false;
+    // document.getElementById(tableIds['selecionadas'].id).innerHTML = tarefasSelecionadas.toTable(tableIds['selecionadas'].headers);
+    let duracaoTotal = 0
+    let precoTotal = 0
+    tarefasSelecionadas.forEach(t => {
+      duracaoTotal += t.duracao;
+      precoTotal += t.preco;
+    })
+    
+    document.getElementById(tableIds['selecionadas'].id).innerHTML = tarefasSelecionadas.toTable(['nome', 'duracao', 'preco'], false)
+    
   }
 }
 

@@ -10,6 +10,12 @@ class TaskList extends Array {
     renderTasks();
   }
 
+  addTask(task){
+    task.id = this.length;
+    this.push(task);
+    renderTasks();
+  } 
+
   remove(index) {
     this[index] = null;
     renderTasks();
@@ -29,7 +35,7 @@ class TaskList extends Array {
     }
     table += '</tr>';
 
-    const tasksHTML = tasks.map(
+    const tasksHTML = this.map(
         (t) => t ? t.toTableRow(headers, deletable) : '',
     ).join('');
     return table + tasksHTML + '</table>';

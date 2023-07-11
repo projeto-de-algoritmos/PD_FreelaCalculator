@@ -6,7 +6,6 @@ function knapsack() {
     
     // Crio a matriz
     const memoization = [];
-    console.log(tarefas)
     for (let i = 0 ; i <= qtdTarefas; i++){
       memoization[i]= []
       for (let j = 0; j <= qtdHoras; j++){
@@ -48,16 +47,12 @@ function knapsack() {
         }
       }
     }
-    console.log(memoization)
-    console.log(`O maior faturamento possível é de R$${memoization[qtdTarefas][qtdHoras]}!`)
-    const resultado = findSolution(memoization);
-  
-    return resultado;
+    alert(`O maior faturamento possível é de R$${memoization[qtdTarefas][qtdHoras]}!`)
+    findSolution(memoization);
   }
 
 
 function findSolution(memoization) {
-    resultado = [];
   
     let i = tasks.length; // Iterador de linhas da matriz
     let j = Number(horasDisponiveis); // Iterador de colunas da matriz
@@ -74,12 +69,11 @@ function findSolution(memoization) {
         // caso contrario
       // peguei o objeto e vou para linha de cima menos o peso do objeto
       } else {
-        resultado.push(tasks[i]);
-             
+        tarefasSelecionadas.addTask(tasks[i])
         i = i - 1; // subindo uma linha 
         j = Math.max(j - tasks[i].duracao,0);
       }
     }
-    return resultado;
+    renderTasks(steps[2])
   }
   
