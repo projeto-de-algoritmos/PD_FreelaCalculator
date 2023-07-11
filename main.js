@@ -119,10 +119,9 @@ function scheduleTasks() {
   if (tasks.length == 0) {
     return false;
   }
-  
-  console.log(tarefas);
+
   // @TODO: corrigir passagem de parâmetro e remover console.log depois dos testes
-  let tarefas = knapsack(11);
+  let tarefas = knapsack(tasks, 11);
   console.log(tarefas);
 
   // Mostrar tarefas selecionadas
