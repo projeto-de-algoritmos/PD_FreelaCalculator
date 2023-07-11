@@ -45,35 +45,6 @@ function addTask() {
   return false;
 }
 
-function findSolution(memoization) {
-  resultado = [];
-
-  let linha = tasks.length;
-  let coluna = Number(horasDisponiveis);
-  const totalValue = memoization[linha][coluna];
-  let totalObjects = 0;
-
-  // @TODO: verificar caso no qual nenhum objeto cabe na mochila
-  // Enquanto não chegar em uma coluna ou coluna que o valor é zero
-  // continua buscando de onde veio o valor da celula
-  while (linha != 0 || coluna != 0) {
-    // verifico se veio de não pegar o objeto na posição
-    // memoization[linha][coluna], pois está igual ao da linha de cima
-    // se não peguei o objeto vou para linha de cima, caso contrario
-    // peguei o objeto e vou para linha de cima menos o peso do objeto
-    if (totalValue == memoization[linha-1][coluna]) {
-      linha = linha-1;
-    } else {
-      resultado[totalObjects] = tasks[linha];
-      totalObjects = totalObjects + 1;
-      linha = linha - 1;
-      coluna = coluna - tasks[linha].duracao;
-    }
-  }
-
-  return resultado;
-}
-
 
 
 

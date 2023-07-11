@@ -1,6 +1,7 @@
 function knapsack() {
     const qtdHoras = Number(horasDisponiveis);
     const qtdTarefas = tasks.length
+    // Criando um vetor de tarefas iniciando na posição 1, para alinhar com os iteradores da matriz.
     let tarefas = [0, ...tasks]
     
     // Crio a matriz
@@ -40,19 +41,47 @@ function knapsack() {
             //                  v_i + OPT(i-1, w-w_i)) // Levar
             const naoLevar = memoization[i-1][w]
             const valorAtual = tarefas[i].preco
-            const horasAtual = tarefas[i].duracao
-            const valorComNovoItem = valorAtual + memoization[i-1][w-horasAtual]
-          
-          if (naoLevar > valorComNovoItem) {
-            memoization[i][w] = naoLevar
-          } else {
-            memoization[i][w] = valorComNovoItem;
-          }
+            const duracaoAtual = tarefas[i].duracao
+            const levar = valorAtual + memoization[i-1][w-duracaoAtual]
+            
+            memoization[i][w] = Math.max(naoLevar, levar);
         }
       }
     }
     console.log(memoization)
-    const resultado = findSolution(memoization, horasDisponiveis);
+    console.log(`O maior faturamento possível é de R$${memoization[qtdTarefas][qtdHoras]}!`)
+    const resultado = findSolution(memoization);
   
     return resultado;
   }
+
+
+function findSolution(memoization) {
+    resultado = [];
+  
+    let linha = tasks.length;
+    let coluna = Number(horasDisponiveis);
+    const totalValue = memoization[linha][coluna];
+    let totalObjects = 0;
+  
+    // @TODO: verificar caso no qual nenhum objeto cabe na mochila
+    // Enquanto não chegar em uma coluna ou coluna que o valor é zero
+    // continua buscando de onde veio o valor da celula
+    while (linha != 0 || coluna != 0) {
+      // verifico se veio de não pegar o objeto na posição
+      // memoization[linha][coluna], pois está igual ao da linha de cima
+      // se não peguei o objeto vou para linha de cima, caso contrario
+      // peguei o objeto e vou para linha de cima menos o peso do objeto
+      if (totalValue == memoization[linha-1][coluna]) {
+        linha = linha-1;
+      } else {
+        resultado[totalObjects] = tasks[linha];
+        totalObjects = totalObjects + 1;
+        linha = linha - 1;
+        coluna = coluna - tasks[linha].duracao;
+      }
+    }
+  
+    return resultado;
+  }
+  
