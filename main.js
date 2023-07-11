@@ -37,7 +37,7 @@ function addTask() {
   return false;
 }
 
-function achaResultado(memoization, horasDisponiveis){
+function findSolution(memoization, horasDisponiveis){
 
   resultado = [];
 
@@ -46,15 +46,22 @@ function achaResultado(memoization, horasDisponiveis){
   let totalValue = memoization[linha][coluna];
   let totalObjects = 0;
 
+  // @TODO: verificar caso no qual nenhum objeto cabe na mochila
+  // Enquanto não chegar em uma coluna ou coluna que o valor é zero
+  // continua buscando de onde veio o valor da celula
   while(linha != 0 || coluna != 0){
 
+    // verifico se veio de não pegar o objeto na posição 
+    // memoization[linha][coluna], pois está igual ao da linha de cima
+    // se não peguei o objeto vou para linha de cima, caso contrario
+    // peguei o objeto e vou para linha de cima menos o peso do objeto
     if(totalValue == memoization[linha-1][coluna]){
       linha = linha-1;
     }else{
       resultado[totalObjects] = tasks[linha];
+      totalObjects = totalObjects + 1;
       linha = linha - 1;
       coluna = coluna - tasks[linha].duracao;
-      totalObjects = totalObjects + 1;
     }
   
   }
@@ -108,7 +115,7 @@ function knapsack(horasDisponiveis){
     }
   }
 
-  let resultado = achaResultado(memoization, horasDisponiveis);
+  let resultado = findSolution(memoization, horasDisponiveis);
 
   return resultado;
 }
@@ -121,7 +128,7 @@ function scheduleTasks() {
   }
 
   // @TODO: corrigir passagem de parâmetro e remover console.log depois dos testes
-  let tarefas = knapsack(tasks, 11);
+  let tarefas = knapsack(11);
   console.log(tarefas);
 
   // Mostrar tarefas selecionadas
