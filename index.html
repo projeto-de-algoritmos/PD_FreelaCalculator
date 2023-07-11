@@ -76,7 +76,7 @@
                     </div>
                     <div class="col-2">
                         <label for="horasDisponiveis">Horas Disponíveis </label>
-                        <input id="horasDisponiveis" type="number" class="form-control" required min="0" disabled>
+                        <input id="horasDisponiveis" type="number" class="form-control" required min="0">
                     </div>
                 </div>
 
@@ -119,9 +119,14 @@
     <!-- @TODO: remover depois dos testes -->
     <!-- <script>
 
-        const nomes = ['Criar site', 'Criar landpage', 'Criar marketstore', 'Criar aplicativo mobile', 'Criar jogo']
-        const duracoes = [1, 2, 5, 6, 7]
-        const precos = [1, 6, 18, 22, 28]
+        // Criar site	5	150	
+        // Criar marketpalce	15	800	
+        // Criar blog	5	40	
+        // Criar CRUD completo	20	1500	
+
+        const nomes = ['Criar site', 'Criar landpage', 'Criar marketstore', 'Criar aplicativo mobile']
+        const duracoes = [5, 15, 5, 20]
+        const precos = [150, 800, 40, 1500]
 
         for (let i = 0; i < nomes.length; i++) {
             document.getElementById('nome').value = nomes[i]

@@ -55,23 +55,29 @@ function findSolution(memoization) {
   
     let i = tasks.length; // Iterador de linhas da matriz
     let j = Number(horasDisponiveis); // Iterador de colunas da matriz
-    const valorMax = memoization[i][j];
+    let lastSeen = memoization[i][j];
+    console.log(memoization)
+    
   
     // Enquanto não chegar em uma coluna ou coluna que o valor é zero
     // continua buscando de onde veio o valor da celula
-    while (i >0  && j > 0) {
+    while (i != 0 && j != 0) {
       // verifico se veio de não pegar o objeto na posição
       // memoization[linha][coluna], pois está igual ao da linha de cima
       // se não peguei o objeto vou para linha de cima, sem adicionar nenhuma tarefa ao resultado
-      if (valorMax == memoization[i-1][j]) {
-        i = i-1;
+      if (lastSeen == memoization[i-1][j]) { 
+        i = Math.max(i-1,0);
+        
+        
         // caso contrario
       // peguei o objeto e vou para linha de cima menos o peso do objeto
       } else {
         tarefasSelecionadas.addTask(tasks[i-1])
-        i = i - 1; // subindo uma linha 
+        i = Math.max(i - 1,0); // subindo uma linha 
         j = Math.max(j - tasks[i].duracao,0);
       }
+      lastSeen=memoization[i][j]
+     
     }
   }
   
