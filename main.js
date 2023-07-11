@@ -102,7 +102,7 @@ function renderTasks(step) {
     document.getElementById('no-task-div')?.remove();
     document.getElementById('btn-agendar').disabled = false;
     document.getElementById('horasDisponiveis').disabled = false;
-    document.getElementById(tableIds['lista'].id).innerHTML = tasks.toTable(tableIds['lista'].headers, true);
+    document.getElementById(tableIds['lista'].id).innerHTML = tasks.toTable(tableIds['lista'].headers, 'table_tasks', true);
   }
   if (step == steps[2]) {
     
@@ -114,8 +114,10 @@ function renderTasks(step) {
       duracaoTotal += t.duracao;
       precoTotal += t.preco;
     })
+    tarefasSelecionadas.push(new Task({nome: 'Total', duracao: duracaoTotal, preco:precoTotal}))
+
     
-    document.getElementById(tableIds['selecionadas'].id).innerHTML = tarefasSelecionadas.toTable(['nome', 'duracao', 'preco'], false)
+    document.getElementById(tableIds['selecionadas'].id).innerHTML = tarefasSelecionadas.toTable(['nome', 'duracao', 'preco'], 'table_selected', false)
     
   }
 }

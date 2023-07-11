@@ -21,8 +21,8 @@ class TaskList extends Array {
     renderTasks();
   }
 
-  toTable(headers, deletable = true) {
-    let table = '<table><tr>';
+  toTable(headers, id, deletable = true) {
+    let table = `<table id="${id}"><tr>`;
     for (const h of headers) {
       const palavras = h.split(' ');
       const header = palavras.map((p) => {

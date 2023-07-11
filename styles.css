@@ -47,6 +47,11 @@ td {
 
 }
 
+#table_selected tr:last-child {
+    font-weight: bold;
+    background-color: #8c9187;
+}
+
 table,
 th,
 td {

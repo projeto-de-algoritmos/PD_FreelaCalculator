@@ -47,7 +47,6 @@ function knapsack() {
         }
       }
     }
-    alert(`O maior faturamento possível é de R$${memoization[qtdTarefas][qtdHoras]}!`)
     findSolution(memoization);
   }
 
@@ -74,6 +73,5 @@ function findSolution(memoization) {
         j = Math.max(j - tasks[i].duracao,0);
       }
     }
-    renderTasks(steps[2])
   }
   
