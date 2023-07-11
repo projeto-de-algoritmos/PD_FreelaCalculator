@@ -1,4 +1,4 @@
-# Freela Organizer
+# Freela Calculator
 
 **Número da Lista**: Dupla 06 (T01)<br>
 **Conteúdo da Disciplina**: Greed<br>
@@ -23,7 +23,7 @@ Adicione 3 ou mais screenshots do projeto em funcionamento.
 **Linguagem**: Javascript <br/>
 **Framework**: Nenhum <br/>
 
-O projeto está disponível no [github pages](https://projeto-de-algoritmos.github.io/PD_DynamicScheduleOrganizer/), mas caso queira rodá-lo na sua máquina, basta seguir os passos a seguir.
+O projeto está disponível no [github pages](https://projeto-de-algoritmos.github.io/PD_FreelaCalculator/), mas caso queira rodá-lo na sua máquina, basta seguir os passos a seguir.
 
 Para rodar o projeto em um servidor local basta instalar o pacote `live-server` do node e executar o script `start` do [package.json](./package.json) na raiz do projeto:
 

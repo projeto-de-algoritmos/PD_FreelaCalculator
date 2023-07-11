@@ -5,7 +5,9 @@ class Task {
   preco;
 
   getDurationInMinutes() {
-    return this.minutos + this.horas * 60 + this.dias * 24 * 60;
+    let duracaoHoras = this.minutos/60 + this.horas + this.dias * 24;
+    
+    return this.duracaoHoras;
   }
 
   constructor(formValue) {

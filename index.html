@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 
     <head>
-        <title> Freela Organizer</title>
+        <title> Freela Calculator</title>
 
         <!-- Local files -->
         <script src="task.js"></script>
@@ -50,7 +50,7 @@
             <!-- Linha de título -->
             <div class="row center py-4">
                 <div>
-                    <h1 class="text-center fw-bold">Freela Organizer</h1>
+                    <h1 class="text-center fw-bold">Freela Calculator</h1>
                 </div>
             </div>
 
@@ -84,7 +84,7 @@
                     <button id="btn-adicionar" type="button" class="btn btn-green mx-2" onclick="addTask();">Adicionar
                         <i class="fa-solid fa-add"></i>
                     </button>
-                    <button id="btn-agendar" type="button" class="btn btn-dark" onclick="scheduleTasks()" disabled>
+                    <button id="btn-agendar" type="button" class="btn btn-dark" onclick="scheduleTasks()">
                         Agendar<i class="fa-solid fa-check"></i>
                     </button>
                 </div>
@@ -118,9 +118,9 @@
     <!-- @TODO: remover depois dos testes -->
     <script>
 
-        const nomes = ['Criar site', 'Criar landpage', 'Criar marketstore']
-        const duracoes = [10, 15, 12]
-        const precos = [120, 150.15, 200]
+        const nomes = ['Criar site', 'Criar landpage', 'Criar marketstore', 'Criar aplicativo mobile', 'Criar jogo']
+        const duracoes = [1, 2, 5, 6, 7]
+        const precos = [1, 6, 18, 22, 28]
 
         for (let i = 0; i < nomes.length; i++) {
             document.getElementById('nome').value = nomes[i]
