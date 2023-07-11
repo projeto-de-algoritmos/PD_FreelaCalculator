@@ -74,57 +74,7 @@ function findSolution(memoization) {
   return resultado;
 }
 
-function knapsack() {
-  const qtdHoras = Number(horasDisponiveis);
-  const qtdTarefas = tasks.length
-  
-  // Crio a matriz
-  const memoization = [];
-  
-  for (let i = 0 ; i <= qtdTarefas; i++){
-    memoization[i]= []
-    for (let j = 0; j <= qtdHoras; j++){
-      memoization[i][j]= -1
-    }
-  }
 
-  // inicializo a primeira linha com 0's
-  for (let col = 0; col <= qtdHoras; col++) {
-    memoization[0][col] = 0;
-  }
-
-  // inicializo a primeira coluna com 0's
-  for (let lin = 0; lin <= tasks.length; lin++) {
-    memoization[lin][0] = 0;
-  }
-
-  // percorro toda a matriz
-  for (let j = 1; j <= qtdHoras; j++) {
-    for (let i = 1; i <= qtdTarefas; i++) {
-      // assim evitanto um acesso a uma região não alocada de memória
-      // se o meu item não cabe na mochila decido não levar
-      
-      if (tasks[i-1].duracao > i) {
-        memoization[j][i] = memoization[j-1][i];
-      } else {
-        // se o meu item cabe na mochila vejo o que é melhor
-        // a celula de cima da mochila com os itens presentes nela com aquele mesmo peso ou
-        // a celula de cima da mochila com os itens presentes nela quando ela tinha peso
-        // suficiente para levar o item mais o valor do novo item
-        const valorComNovoItem = tasks[i-1].preco + memoization[j-1][i-tasks[i-1].duracao];
-        if (memoization[j-1][i] > valorComNovoItem ) {
-          memoization[j][i] = memoization[j-1][i];
-        } else {
-          memoization[j][i] = valorComNovoItem;
-        }
-      }
-    }
-  }
-  console.log(memoization)
-  const resultado = findSolution(memoization, horasDisponiveis);
-
-  return resultado;
-}
 
 
 // Organiza as tarefas que devem ser feitas
