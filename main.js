@@ -58,9 +58,7 @@ function scheduleTasks() {
     return false;
   }
 
-  // @TODO: corrigir passagem de parâmetro e remover console.log depois dos testes
-  const tarefas = knapsack();
-  console.log(tarefas);
+  knapsack();
 
   // Mostrar tarefas selecionadas
   renderTasks(steps[2]);

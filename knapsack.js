@@ -56,7 +56,6 @@ function findSolution(memoization) {
     let i = tasks.length; // Iterador de linhas da matriz
     let j = Number(horasDisponiveis); // Iterador de colunas da matriz
     let lastSeen = memoization[i][j];
-    console.log(memoization)
     
   
     // Enquanto não chegar em uma coluna ou coluna que o valor é zero
