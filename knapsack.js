@@ -69,7 +69,7 @@ function findSolution(memoization) {
         // caso contrario
       // peguei o objeto e vou para linha de cima menos o peso do objeto
       } else {
-        tarefasSelecionadas.addTask(tasks[i])
+        tarefasSelecionadas.addTask(tasks[i-1])
         i = i - 1; // subindo uma linha 
         j = Math.max(j - tasks[i].duracao,0);
       }
