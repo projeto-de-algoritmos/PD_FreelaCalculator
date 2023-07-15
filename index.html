@@ -118,21 +118,17 @@
     </body>
     <!-- @TODO: remover depois dos testes -->
     <!-- <script>
-
-        // Criar site	5	150	
-        // Criar marketpalce	15	800	
-        // Criar blog	5	40	
-        // Criar CRUD completo	20	1500	
-
         const nomes = ['Criar site', 'Criar landpage', 'Criar marketstore', 'Criar aplicativo mobile']
         const duracoes = [5, 15, 5, 20]
         const precos = [150, 800, 40, 1500]
+
+
+        document.getElementById('horasDisponiveis').value = 11
 
         for (let i = 0; i < nomes.length; i++) {
             document.getElementById('nome').value = nomes[i]
             document.getElementById('duracao').value = duracoes[i]
             document.getElementById('preco').value = precos[i]
-            document.getElementById('horasDisponiveis').value = 11
             document.getElementById("btn-adicionar").click()
         }
 

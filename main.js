@@ -13,6 +13,7 @@ const elementsId = {
   duracao: 'duracao',
   preco: 'preco',
   divTaskList: 'taskList',
+  horasDisponiveis: 'horasDisponiveis'
 };
 
 function getFormValue() {
@@ -24,7 +25,6 @@ function getFormValue() {
 }
 
 function getInfoProjeto() {
-  // @TODO: inserir descrição do projeto
   alert('Esse projeto visa organizar os trabalhos de freelancers maximizando o valor recebido,  \
   usando o algoritmo da mochila (knapsack) com pesos, onde cada peso é a quantidade de horas para \
    realizar uma tarefa.');
@@ -55,6 +55,7 @@ function addTask() {
 function scheduleTasks() {
   
   if (tasks.length == 0) {
+    alert("Insira ao menos uma tarefa.")
     return false;
   }
 
@@ -136,6 +137,10 @@ function validaForm(formValue) {
     return false;
   }
 
+  if (!validaHorasDisponiveis(formValue)) {
+    return false;
+  }
+
   return true;
 }
 
@@ -148,6 +153,21 @@ function validaPreco(formValue) {
   }
   if (isNaN(preco)) {
     fieldError('Preço', 'Insira apenas números. Use ponto para separar as casas decimais.');
+    return false;
+  }
+  return true;
+}
+
+
+
+function validaHorasDisponiveis(formValue) {
+  const horasDisponiveis = formValue[elementsId['horasDisponiveis']];
+  if (!horasDisponiveis) {
+    fieldError('Horas Disponíveis');
+    return false;
+  }
+  if (isNaN(horasDisponiveis)) {
+    fieldError('Horas Disponíveis', 'Insira apenas números. Use ponto para separar as casas decimais.');
     return false;
   }
   return true;
@@ -169,13 +189,13 @@ function validaNome(formValue) {
 }
 
 function validaDuracao(formValue) {
-  const preco = formValue[elementsId['duracao']];
-  if (!preco) {
-    fieldError('Preço');
+  const duracao = formValue[elementsId['duracao']];
+  if (!duracao) {
+    fieldError('Duração');
     return false;
   }
-  if (isNaN(preco)) {
-    fieldError('Preço', 'Insira apenas números. Use ponto para separar as casas decimais.');
+  if (isNaN(duracao)) {
+    fieldError('Duração', 'Insira apenas números. Use ponto para separar as casas decimais.');
     return false;
   }
   return true;
